@@ -8,5 +8,5 @@ get '/' do
 end
 
 get '/new' do
- erb "Ops, there is a stab!"
+ erb :new
 end
