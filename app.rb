@@ -64,4 +64,8 @@ post '/post/:id' do
 		@error = 'Empty field'
 		return erb :new
 	end
+	@db.execute 'insert into Comments
+	(created_date, post_id, content)
+	values (datetime(), ?, ?)', [post_id, content]
+	redirect to "/post/#{post_id}"
 end
