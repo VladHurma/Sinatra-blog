@@ -1,7 +1,7 @@
 <h2>Create new posts</h2>
 <p>
-	<form>
-	  <textarea class="form-control" rows="6"></textarea><br>
+	<form action="/new" method="POST" role="form">
+	  <textarea name="content" class="form-control" rows="6" placeholder="Post text"></textarea><br>
 	  <button type="submit" class="btn btn-primary">Add post</button>
 	</form>
 </p>
