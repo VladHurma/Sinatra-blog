@@ -9,7 +9,7 @@ get '/' do
 end
 
 def init_db
-	@db = SQLite3::Database.new 'blog_content.db'
+	@db = SQLite3::Database.new 'db/blog_content.db'
 	@db.results_as_hash = true
 end
 
