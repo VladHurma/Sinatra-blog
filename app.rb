@@ -4,9 +4,6 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'sqlite3'
 
-get '/' do
-	erb "Hello! <a href=\"https://github.com/bootstrap-ruby/sinatra-bootstrap\">Original</a> pattern has been modified for <a href=\"http://rubyschool.us/\">Ruby School</a>"			
-end
 
 def init_db
 	@db = SQLite3::Database.new 'db/blog_content.db'
@@ -27,6 +24,11 @@ configure do
 	)'
 end
 
+get '/' do
+	@results = @db.execute 'select * from Posts order by id desc'
+	erb :index			
+end
+
 get '/new' do
  erb :new
 end
@@ -37,5 +39,6 @@ post '/new' do
 		@error = 'Empty field'
 		return erb :new
 	end
+	@db.execute 'insert into Posts (created_date, content) values (datetime(),?)', [content]
 	erb "You typed: #{content}"
 end
