@@ -49,3 +49,12 @@ get '/post/:id' do
 	@row = results[0]
 	erb :details
 end
+
+post '/post/:id' do
+	post_id = params[:id]
+	content = params[:content]
+	if content.length <= 0
+		@error = 'Empty field'
+		return erb :new
+	end
+end
